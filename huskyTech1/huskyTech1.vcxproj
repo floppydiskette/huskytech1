@@ -145,13 +145,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Blendspace.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="HuskyMath.cpp" />
+    <ClCompile Include="HuskySTD.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Blendspace.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="ht_types.h" />
+    <ClInclude Include="HuskyMath.h" />
+    <ClInclude Include="HuskySTD.h" />
     <ClInclude Include="keybinds.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Sprite.h" />

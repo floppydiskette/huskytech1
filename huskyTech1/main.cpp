@@ -5,13 +5,6 @@
 //update code and stuff here
 
 
-//todo: move this to a math class
-float clip(float n, float lower, float upper) {
-	return std::max(lower, std::min(n, upper));
-}
-
-
-
 void input_update() {
 	while (SDL_PollEvent(&e) != 0) {
 		switch (e.type) {
@@ -21,7 +14,7 @@ void input_update() {
 				break;
 
 			case SDL_KEYDOWN:
-				handle_keyboard_movement(e, az_en);
+				handle_keyboard_movement(e, az_ch);
 				break;
 
 			case SDL_KEYUP:
@@ -32,7 +25,7 @@ void input_update() {
 						break;
 
 					default:
-						handle_keyboard_movement(e, az_en);
+						handle_keyboard_movement(e, az_ch);
 						break;
 
 				}
@@ -45,9 +38,9 @@ void input_update() {
 
 
 void physics_update() {
-	int speed = 75;
 
-	az_en->SetPosition({ az_en->GetPosition().x + (az_en->velocity.x * speed * (float)deltaTime), az_en->GetPosition().y + (az_en->velocity.y * speed * (float)deltaTime) });
+	az_ch->PhysicsUpdate(deltaTime);
+
 }
 
 
@@ -62,7 +55,7 @@ void draw() {
 	//Clear screen
 	SDL_RenderClear(ht_renderer);
 
-	az_en->Draw(ht_renderer);
+	az_ch->Draw(ht_renderer);
 
 	//Update screen
 	SDL_RenderPresent(ht_renderer);
@@ -70,20 +63,20 @@ void draw() {
 
 
 
-void handle_keyboard_movement(SDL_Event kev, Entity* en) {
+void handle_keyboard_movement(SDL_Event kev, Character* en) {
 	const Uint8* state = SDL_GetKeyboardState(NULL);
 	if (state[C_forward])
-		en->velocity.y = -1;
+		en->SetInputY(-1);
 	else if (state[C_backward])
-		en->velocity.y = 1;
+		en->SetInputY(1);
 	else
-		en->velocity.y = 0;
+		en->SetInputY(0);
 	if (state[C_sleft])
-		en->velocity.x = -1;
+		en->SetInputX(-1);
 	else if (state[C_sright])
-		en->velocity.x = 1;
+		en->SetInputX(1);
 	else
-		en->velocity.x = 0;
+		en->SetInputX(0);
 }
 
 
@@ -145,7 +138,10 @@ bool init() {
 				LAST = 0;
 				deltaTime = 0;
 
-				az_en = new Entity(new Sprite("data/character_ss.png", ht_renderer, 4, 3), {25, 25});
+				//this is debug stuffz
+				az_ch = new Character(new Sprite("data/character_ss.png", ht_renderer, 4, 3), {25, 25});
+
+
 				alive = true;
 				return true;
 			}

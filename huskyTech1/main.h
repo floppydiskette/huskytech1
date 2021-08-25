@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "Sprite.h"
 #include "Entity.h"
+#include "Character.h"
 #include "ht_types.h"
 #include "keybinds.h"
 
@@ -18,14 +19,14 @@ Uint64 NOW;
 Uint64 LAST;
 double deltaTime;
 
-Entity* az_en;
+Character* az_ch;
 
 SDL_Event e;
 
 //methods
 int main(int argc, char* args[]);
 
-void handle_keyboard_movement(SDL_Event kev, Entity* en);
+void handle_keyboard_movement(SDL_Event kev, Character* en);
 
 //sdl specific ones
 bool init();

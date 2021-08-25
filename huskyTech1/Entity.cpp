@@ -1,5 +1,13 @@
 #include "Entity.h"
 
+
+
+Entity::Entity()
+{
+    en_sprite = NULL;
+    position = { 0, 0 };
+}
+
 Entity::Entity(Sprite* spr, Point pos)
 {
     en_sprite = spr;
@@ -23,4 +31,19 @@ void Entity::SetPosition(Point pos)
 Point Entity::GetPosition()
 {
     return position;
+}
+
+void Entity::AddPosition(Point pos)
+{
+    position = HuskyMath::addPointPoint(position, pos);
+}
+
+void Entity::SetVelocity(Point vel)
+{
+    velocity = vel;
+}
+
+Point Entity::GetVelocity()
+{
+    return velocity;
 }

@@ -22,7 +22,7 @@ Sprite::~Sprite()
 
 void Sprite::renderAtScreenPos(SDL_Renderer* renderer, int x, int y, int row, int col)
 {
-	if (sprite_tex == NULL) {
+	if (sprite_tex == nullptr) {
 		return;
 	}
 	SDL_Rect srcrect = { sprite_w * col, sprite_h * row, sprite_w, sprite_h };

@@ -1,26 +1,33 @@
 #pragma once
 #include <SDL.h>
 #include "ht_types.h"
+#include "HuskyMath.h"
 #include "Sprite.h"
 
 class Entity
 {
 	
 public:
+	Entity();
 	Entity(Sprite* spr, Point pos = { 0, 0 });
 
-	void Update();
+	virtual void Update();
 
-	void Draw(SDL_Renderer* renderer);
+	virtual void Draw(SDL_Renderer* renderer);
 
-	void SetPosition(Point pos);
+	virtual void SetPosition(Point pos);
 
-	Point GetPosition();
+	virtual Point GetPosition();
 
-	Point velocity = { 0, 0 };
+	virtual void AddPosition(Point pos);
+
+	virtual void SetVelocity(Point vel);
+
+	virtual Point GetVelocity();
 
 private:
 	Point position;
 	Sprite* en_sprite;
+	Point velocity = { 0, 0 };
 };
 
